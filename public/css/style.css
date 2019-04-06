@@ -86,7 +86,6 @@
 		}
 		.contacts li{
 			width: 100% !important;
-			padding: 5px 10px;
 			margin-bottom: 15px !important;
 		}
 	.active{
@@ -249,4 +248,36 @@
 
 .bd-highlight {
 	padding: 0px 15px;
+}
+
+.message-board {
+	position: relative;
+}
+
+.loading-message {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 100;
+	background: rgba(255, 255, 255, 0.6);
+}
+
+.friend-box {
+	cursor: pointer;
+	padding: 10px;
+}
+
+.friend-box:hover {
+	background: rgba(255,255,255,0.6);
+	
+}
+
+.loading-message img {
+	position: absolute;
+	width: 20px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
