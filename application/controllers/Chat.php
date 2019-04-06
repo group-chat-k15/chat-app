@@ -32,5 +32,12 @@ class Chat extends MY_Controller {
         $this->data['temp'] = 'chat/add_friend';
         $this->load->view('site/index', $this->data);
     }
+    
+    public function load_broad_message() {
+        $xhtml = '';
+        if ($_POST['id']) {
+            $id = $_POST['id'];
+        }
+    }
 
 }

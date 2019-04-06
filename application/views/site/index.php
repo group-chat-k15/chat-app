@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="<?=base_url('public/')?>css/style.css">
 </head>
 <body>
-
+	<script type="text/javascript"> var base_url = '<?= base_url() ?>';</script>
 	<?php $this->load->view('site/header'); ?>
 	<?php $this->load->view('site/' . $temp); ?>
 	<?php $this->load->view('site/footer'); ?>
