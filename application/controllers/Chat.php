@@ -33,6 +33,20 @@ class Chat extends MY_Controller {
         $this->load->view('site/index', $this->data);
     }
     
+    public function save_message() {
+        if ($_POST['msg']) {
+            $data = array(
+                'pid' => 0,
+                'vn_detail' => $_POST['msg'],
+                'to_id' => $_POST['to_id'],
+                'from_id' => $_POST['id_form'],
+                'created' => now(),
+            );
+            $this->comment_m->create($data);
+            
+        }
+    }
+    
     public function load_broad_message() {
         $xhtml = '';
         if ($_POST['id']) {

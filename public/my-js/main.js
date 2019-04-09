@@ -38,12 +38,20 @@ function send_message(BROADCAST_URL, BROADCAST_PORT) {
 			msg: msg,
 			id_form: idForm,
 			id_to: idTo
-		};
+	};
 	//console.log(data);
 	//JSON.stringify(obj);
-	var ws = new WebSocket('ws://localhost:' + BROADCAST_PORT);
-	ws.onopen = () => conn.send(JSON.stringify(data));
+//	var ws = new WebSocket('ws://localhost:' + BROADCAST_PORT);
+//	ws.onopen = () => conn.send(JSON.stringify(data));
 	
+	$.ajax({
+	    url: base_url + 'chat/save_message',
+	    type: 'POST',
+	    data: data,
+	    success: function (data) {
+	    	console.log(data);
+	    }
+	});
 
 }
 
