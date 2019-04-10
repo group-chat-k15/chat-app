@@ -21,35 +21,47 @@ $('.friend-box').click(function() {
 	}	
 });
 
-var conn = new WebSocket('ws://localhost:' + BROADCAST_PORT);
-	conn.onopen = function(e) {
-	    console.log("Connection established!");
-	};
-	conn.onmessage = function(e) {
-	    console.log(e.data);
-	};
+//// connect socket
+//try{
+//	conn = new WebSocket('ws://localhost:' + BROADCAST_PORT);
+////	conn.onopen = function(e) {
+////	    console.log("Connection established!");
+////	};
+////	conn.onmessage = function(e) {
+////		let info = JSON.parse(e.data);
+////	    console.log(info);
+////	};
+//}catch (error) {
+//	console.log(error);
+//}
+console.log(BROADCAST_PORT);
+const socket = new WebSocket('ws://localhost:' + BROADCAST_PORT); // create websocket instance
+
+socket.addEventListener('error', (event) => { /* do something */ });
+// or the same
+socket.onerror = (event) => { /* do something */ };
+
 	//conn.send('hello');
 function send_message(BROADCAST_URL, BROADCAST_PORT) {
 	let msg = $('.type_msg').val();
-	let idForm = $('.type_msg').attr('id-form') ? $('.type_msg').attr('id-form') : 0;
-	let idTo = $('.type_msg').attr('id-to') ?  $('.type_msg').attr('id-to') : 0;
+	let idForm = $('body').attr('id') ?  $('body').attr('id') : 0;
+	let idTo = $('.type_msg').attr('id-to') ? $('.type_msg').attr('id-to') : 0;
 
-	let data = {
+	let dataMsg = {
 			msg: msg,
-			id_form: idForm,
-			id_to: idTo
-	};
-	//console.log(data);
-	//JSON.stringify(obj);
-//	var ws = new WebSocket('ws://localhost:' + BROADCAST_PORT);
-//	ws.onopen = () => conn.send(JSON.stringify(data));
-	
+			from_id: idForm,
+			to_id: idTo
+	};	
 	$.ajax({
 	    url: base_url + 'chat/save_message',
 	    type: 'POST',
-	    data: data,
+	    data: dataMsg,
 	    success: function (data) {
-	    	console.log(data);
+	    	let flag = parseInt(data);
+	    	if(flag == 1) {
+	    		var ws = new WebSocket('ws://localhost:' + BROADCAST_PORT);
+	    		ws.onopen = () => conn.send(JSON.stringify(dataMsg));
+	    	}
 	    }
 	});
 

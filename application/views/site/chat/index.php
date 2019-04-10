@@ -1,9 +1,9 @@
 <
 <div class="container-fluid h-100">
 	<div class="row justify-content-center h-100">
-		<div class="col-md-4 col-xl-3 chat">
+		<!--<div class="col-md-4 col-xl-3 chat">
 			<div class="card mb-sm-3 mb-md-0 contacts_card">
-				<div class="card-header">
+			<div class="card-header">
 					<div class="input-group">
 						<input type="text" placeholder="Search..." name=""
 							class="form-control search">
@@ -25,7 +25,7 @@
 						              if(!empty($friend->image_link)){
 						                  //$link_img = base_url().'uploads/images/news/1024_512/'.$row->image_link;
 						              }
-						              $xhtmlListFiend .= '<li> 
+						              $xhtmlListFiend1 .= '<li> 
                                     						<div class="d-flex bd-highlight friend-box" '. ($k == 0 ? 'active="1"' : '') .' id-user="'.$friend->id.'">
                                     							<div class="img_cont">
                                     								<img
@@ -40,7 +40,7 @@
                                     						</div>
     					                               </li>';
 						              if ($k == 0) {
-						                  $xhtmlBlockMessage .= '<div class="card-header msg_head">
+						                  $xhtmlBlockMessage_1 .= '<div class="card-header msg_head">
                                                 					<div class="d-flex bd-highlight friend-box">
                                                 						<div class="img_cont">
                                                 							<img
@@ -107,21 +107,35 @@
 						              }
 						          }
 						      }
-						      echo $xhtmlListFiend;
+						      //echo $xhtmlListFiend;
 						?>
 					</ui>
 				</div>
 				<div class="card-footer"></div>
 			</div>
-		</div>
+		</div>  -->
 		<div class="col-md-8 col-xl-6 chat">
-			<div class="card message-board">
+			<div class="card message-board" style="background: #ffff; background-color: #ffff!important">
 				<div class="loading-message d-none">
 					<img src="<?= base_url('public/img/loading.gif') ?>" />
 				</div>
 				<div class="block-message">
 					<?= $xhtmlBlockMessage ?>
 					<!-- block mesage -->
+					<div class="card-footer">
+    					<div class="input-group">
+    						<div class="input-group-append">
+    							<span class="input-group-text attach_btn"><i
+    								class="fas fa-paperclip"></i></span>
+    						</div>
+    						<textarea id-to="28" name="" class="form-control type_msg"
+    							placeholder="Type your message..."></textarea>
+    						<div class="input-group-append">
+    							<span class="input-group-text send_btn" onclick="send_message('<?= BROADCAST_URL ?>','<?= BROADCAST_PORT ?>');"><i
+    								class="fas fa-location-arrow"></i></span>
+    						</div>
+    					</div>
+    				</div>
 				</div>
 			</div>
 		</div>

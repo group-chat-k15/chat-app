@@ -34,17 +34,18 @@ class Chat extends MY_Controller {
     }
     
     public function save_message() {
+        $flag = 0;
         if ($_POST['msg']) {
             $data = array(
                 'pid' => 0,
-                'vn_detail' => $_POST['msg'],
-                'to_id' => $_POST['to_id'],
-                'from_id' => $_POST['id_form'],
-                'created' => now(),
+                'vn_detail' => $_POST['msg'] ? $_POST['msg'] : '',
+                'to_id' => $_POST['to_id'] ? $_POST['to_id'] : '',
+                'from_id' => $_POST['from_id'] ? $_POST['from_id'] : '',
+                'created' => time()
             );
-            $this->comment_m->create($data);
-            
+            if ($this->comment_m->create($data))  $flag = 1;         
         }
+        echo $flag;
     }
     
     public function load_broad_message() {

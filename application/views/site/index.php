@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=base_url('public/')?>css/style.css">
 </head>
-<body>
+<body id="<?= $_SESSION['id'] ? $_SESSION['id'] : 3 ?>" style="background: #ffff">
 	<script type="text/javascript">
 	 	var base_url = '<?= base_url() ?>';
 	 	var BROADCAST_URL       = '<?= BROADCAST_URL ?>';
