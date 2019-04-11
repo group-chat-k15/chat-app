@@ -90,6 +90,7 @@ Class Home extends CI_Controller {
                         'username' => $result[0]->username,
                         'email' => $result[0]->email,
                     );
+                    $_SESSION['id'] = $result[0]->id;
     // Add user data in session
                     $this->session->set_userdata('logged_in', $session_data);
                     $this->load->view('site/home/admin_page');

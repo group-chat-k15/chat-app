@@ -11,24 +11,31 @@ class Chat extends MY_Controller {
     }
 
     public function index() {
-        
+        $user_id = $_SESSION['id'];
         $input = array();
-        $list_friend = $this->add_friend_m->get_list($input);
-        
-        foreach ($list_friend as $row) {
-            $row->friend = $this->users_m->get_info($row->friends_id);
+        $input['where'] = array('user_id' => $user_id);
+        $obj_add_friend = $this->add_friend_m->get_list($input);
+        if ($obj_add_friend) {
+            $ids = $this->users_m->getId($obj_add_friend, 'friends_id');
+            $input = array();
+            $input['where_in'] = array('id', $ids);
+            $input['order'] = array('name', 'ASC');
+            $list_friend = $this->users_m->get_list($input);
+            if ($list_friend) {
+                $input = array();
+                $input['where'] = array('from_id' => $user_id, 'to_id' => 0);
+            }
         }
         
         $this->data['list_friend'] = $list_friend;
-
-        
+        $this->data['title'] = 'Danh sách bạn bè';
         $this->data['temp'] = 'chat/index';
         $this->load->view('site/index', $this->data);
     }
     
     public function add_friend() {
     
-    
+        $this->data['title'] = 'Thêm bạn bè';
         $this->data['temp'] = 'chat/add_friend';
         $this->load->view('site/index', $this->data);
     }
@@ -47,6 +54,36 @@ class Chat extends MY_Controller {
         }
         echo $flag;
     }
+    
+    public function create_mesage() {
+        $xhtml = '';
+        if($_POST) {
+            $id_curent = $_POST['id_curent'];
+            $info_mesage = $_POST['msg'];
+            $id = $id_curent == $info_mesage['from_id'] ? $info_mesage['from_id'] : $info_mesage['to_id'];
+            $info_user = $this->users_m->get_info($id);
+            $link_img = base_url().'public/img/default-user-'. ($info_user->sex ? $info_user->sex : 1) .'.jpg';
+            if(!empty($obj_friend->image_link)){
+                //$link_img = base_url().'uploads/images/news/1024_512/'.$row->image_link;
+            }
+            $class_1 = $id_curent == $info_mesage['from_id'] ? 'end' : 'start';
+            $class_2 = $id_curent == $info_mesage['from_id'] ? 'msg_cotainer_send' : 'msg_cotainer';
+            $block_img = '<div class="img_cont_msg">
+    							<img
+    								src="'.$link_img.'"
+    								class="rounded-circle user_img_msg">
+    						</div>';
+            $block_content = '<div class="'.$class_2.'">
+    							'.$_POST['msg']['msg'].' <span class="msg_time">8:40 AM, Today</span>
+    						</div>';
+            $str_restult = $id_curent == $info_mesage['from_id'] ? $block_content.$block_img : $block_img.$block_content;
+            $xhtml .= '<div class="d-flex justify-content-'.$class_1.' mb-4">
+                            '.$str_restult.'
+    					</div>';
+        }
+        echo $xhtml;
+    }
+    
     
     public function load_broad_message() {
         $xhtml = '';
@@ -114,7 +151,7 @@ class Chat extends MY_Controller {
             							<span class="input-group-text attach_btn"><i
             								class="fas fa-paperclip"></i></span>
             						</div>
-            						<textarea name="" id-to="" id-form="'.$id.'" class="form-control type_msg"
+            						<textarea name="" id-to="'.$id.'" class="form-control type_msg"
             							placeholder="Type your message..."></textarea>
             						<div class="input-group-append">
             							<span class="input-group-text  send_btn" onclick="send_message(\''.BROADCAST_URL.'\', \''.BROADCAST_PORT.'\');"><i

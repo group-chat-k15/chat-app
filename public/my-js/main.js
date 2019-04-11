@@ -21,31 +21,42 @@ $('.friend-box').click(function() {
 	}	
 });
 
-//// connect socket
-//try{
-//	conn = new WebSocket('ws://localhost:' + BROADCAST_PORT);
-////	conn.onopen = function(e) {
-////	    console.log("Connection established!");
-////	};
-////	conn.onmessage = function(e) {
-////		let info = JSON.parse(e.data);
-////	    console.log(info);
-////	};
-//}catch (error) {
-//	console.log(error);
-//}
-console.log(BROADCAST_PORT);
-const socket = new WebSocket('ws://localhost:' + BROADCAST_PORT); // create websocket instance
+// connect socket
+try{
+	let idCrurent = $('body').attr('id') ?  $('body').attr('id') : 0;
+	console.log(idCrurent);
+	conn = new WebSocket('ws://localhost:' + BROADCAST_PORT);
+	conn.onopen = function(e) {
+	    console.log("Connection established!");
+	};
+	conn.onmessage = function(e) {
+		let info = JSON.parse(e.data);
+		idCrurent = parseInt(idCrurent);
+		if(info.to_id == idCrurent || info.from_id == idCrurent) {
+			$.ajax({
+			    url: base_url + 'chat/create_mesage',
+			    type: 'POST',
+			    data: {id_curent: idCrurent, msg: info},
+			    success: function (result) {
+			    	$('.msg_card_body').append(result);
+			    	if(info.from_id == idCrurent) {
+			    		$('.type_msg').val(' ');
+			    	}			    	
+			    }
+			});
+		}
+		
+	};
+}catch (error) {
+	console.log(error);
+}
 
-socket.addEventListener('error', (event) => { /* do something */ });
-// or the same
-socket.onerror = (event) => { /* do something */ };
 
 	//conn.send('hello');
 function send_message(BROADCAST_URL, BROADCAST_PORT) {
 	let msg = $('.type_msg').val();
-	let idForm = $('body').attr('id') ?  $('body').attr('id') : 0;
-	let idTo = $('.type_msg').attr('id-to') ? $('.type_msg').attr('id-to') : 0;
+	let idForm = $('body').attr('id') ?  parseInt($('body').attr('id')) : 0;
+	let idTo = $('.type_msg').attr('id-to') ? parseInt($('.type_msg').attr('id-to')) : 0;
 
 	let dataMsg = {
 			msg: msg,
