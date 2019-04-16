@@ -340,3 +340,12 @@
 .my-profile-zone ul li a i {
 	padding-right: 10px;
 }
+
+.image-area {
+	width: 100%;
+}
+.image-area-box {
+	width: 23%;
+	margin: 0 15px;
+	display: inline-block;
+}

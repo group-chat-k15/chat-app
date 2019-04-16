@@ -105,6 +105,24 @@
                                                 								class="fas fa-location-arrow"></i></span>
                                                 						</div>
                                                 					</div>
+                                                				    <div class="image-area">
+                                                				        <div class="image-area-box">
+                                        					               <img src="'.$link_img.'">
+                                                						  <i class="fas fa-times"></i>
+                                        					            </div>
+                                                					   <div class="image-area-box">
+                                        					               <img src="'.$link_img.'">
+                                                						  <i class="fas fa-times"></i>
+                                        					            </div>
+                                                					    <div class="image-area-box">
+                                        					               <img src="'.$link_img.'">
+                                                						  <i class="fas fa-times"></i>
+                                        					            </div>
+                                                						<div class="image-area-box">
+                                        					               <img src="'.$link_img.'">
+                                                						  <i class="fas fa-times"></i>
+                                        					            </div>
+                                    					            </div>
                                                 				</div>';
 						              }
 						          }
