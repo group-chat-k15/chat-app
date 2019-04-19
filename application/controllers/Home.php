@@ -89,6 +89,8 @@ Class Home extends CI_Controller {
                     $session_data = array(
                         'username' => $result[0]->username,
                         'email' => $result[0]->email,
+                        'name' => $result[0]->name,
+                        'image_link' => $result[0]->image_link
                     );
                     $_SESSION['id'] = $result[0]->id;
     // Add user data in session
@@ -115,6 +117,7 @@ Class Home extends CI_Controller {
         $data['message_display'] = 'Successfully Logout';
         $this->load->view('site/home/login_form', $data);
     }
+    
 
 }
 

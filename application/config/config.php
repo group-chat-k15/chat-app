@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://'. $_SERVER['HTTP_HOST'] .  '/project-hao/chat/chat-app/';
-
+//$config['base_url'] = 'http://'. $_SERVER['HTTP_HOST'] .  '/chat-app/';
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -521,3 +521,5 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+$config['upload_path'] = "./uploads/";
+$config['allowed_types'] = "gif|jpg|jpeg|png";
