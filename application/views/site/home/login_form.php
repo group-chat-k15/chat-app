@@ -76,7 +76,7 @@
                 </div>
             </div>
             <br/><br />
-            <a href="http://localhost/chat-app/Home/user_registration_show"><h4>To Sign Up Click Here</a></h4>
+            <a href="http://localhost/chat-app/Home/do_upload"><h4>To Sign Up Click Here</a></h4>
             <?php echo form_close(); ?>
             </div>
         </div>

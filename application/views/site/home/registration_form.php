@@ -71,6 +71,16 @@
                 </div>
                 <br/><br />
             </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="pwd">Choose Image:</label><br/><br/>
+                <div class="col-sm-4">   
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                        <input id="image" type="text" value='<?php echo $_SESSION['image_name'];?>' class="form-control" name="image_link" placeholder="image_file">
+                    </div>
+                </div>
+                <br/><br />
+            </div>
             <div class="form-group">        
                 <div class="col-sm-offset-0 col-sm-2">
                     <button type="submit" class="btn btn-default">Sign Up</button>

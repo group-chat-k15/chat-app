@@ -36,7 +36,11 @@ Class Home extends CI_Controller {
     public function user_registration_show() {
         $this->load->view('site/home/registration_form');
     }
-
+    
+    public function do_upload(){
+        $this->load->view('site/home/test');
+    }
+    
     // Validate and store registration data in database
     public function new_user_registration() {
 
@@ -44,13 +48,15 @@ Class Home extends CI_Controller {
         $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
         $this->form_validation->set_rules('email_value', 'Email', 'trim|required|xss_clean');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('image_link', 'Image', 'trim|required|xss_clean');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('site/home/registration_form');
         } else {
             $data = array(
                 'username' => $this->input->post('username'),
                 'email' => $this->input->post('email_value'),
-                'password' => $this->input->post('password')
+                'password' => $this->input->post('password'),
+                'image_link' => $this->input->post('image_link')
             );
             $result = $this->login_database->registration_insert($data);
             if ($result == TRUE) {
