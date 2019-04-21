@@ -58,10 +58,20 @@ class Chat extends MY_Controller {
             $xhtml_list_image = '';
             if($image_list) {
                 $xhtml_list_image .= '<div class="image-message">';
-                foreach($image_list as $value) {                    
-                    $xhtml_list_image .=    '<div class="image-message-img">
-                                                <img onclick="showImage(this)" src="'.base_url().'uploads/chat/'.$value.'" />
-                                            </div>';
+                foreach($image_list as $value) { 
+                    $path = ROOT_PATH . '/uploads/chat/' . $value;
+                    $name_file =  pathinfo($path);  
+                    if($name_file[extension] == 'jpg' || $name_file[extension] == 'png' || $name_file[extension] == 'JPG' || $name_file[extension] == 'PNG') {
+                        $xhtml_list_image .=   '<div class="image-message-img">
+                                                    <img onclick="showImage(this)" src="'.base_url().'uploads/chat/'.$value.'" />
+                                                </div>';
+                    }else if($name_file[extension] == 'txt' || $name_file[extension] == 'rar' || $name_file[extension] == 'doc') {
+                        $xhtml_list_image .=   '<div class="image-message-img">
+                                                    <a href="'.base_url().'uploads/chat/'.$value.'" download>'.$value.'</a>
+                                                </div>';
+                    }
+               
+
                 }
                 $xhtml_list_image .= '</div>';
             }
@@ -89,26 +99,29 @@ class Chat extends MY_Controller {
         $input = array();
         $input['where'] = array('user_id' => $user_id, 'status' => 1);
 
-        $list_user = $this->add_friend_m->get_list($input);
+        $list_friend = $this->add_friend_m->get_list($input);
 
-        if($list_user) {
-            $arrId = $this->add_friend_m->getId($list_user, 'friends_id');
-            $input = array();
-            $input['where'] = array('id <>' => $user_id);
-            if($_POST['search']) {
-                $input['like'] = array('name', $_POST['search']);
-            }           
+    
+        $arrId = $this->add_friend_m->getId($list_friend, 'friends_id');
+        $input = array();
+        $input['where'] = array('id <>' => $user_id);
+        if($_POST['search']) {
+            $input['like'] = array('name', $_POST['search']);
+        } 
+        if($arrId) {
             $input['where_not_in'] = array('id', $arrId);
-            $list_user = $this->users_m->get_list($input);
+        }          
+        
+        $list_user = $this->users_m->get_list($input);
 
-            foreach($list_user as $row) {
-                $where = array('user_id' => $user_id, 'friends_id' => $row->id, 'status' => 0);
-                $info = $this->add_friend_m->get_info_rule($where);
-                if($info) {
-                    $row->status_add = 1;
-                }
+        foreach($list_user as $row) {
+            $where = array('user_id' => $user_id, 'friends_id' => $row->id, 'status' => 0);
+            $info = $this->add_friend_m->get_info_rule($where);
+            if($info) {
+                $row->status_add = 1;
             }
         }
+        
 
         $this->data['list_user'] = $list_user;
         $this->data['title'] = 'Thêm bạn bè';
@@ -256,9 +269,17 @@ class Chat extends MY_Controller {
             if($image_list) {
                 $xhtml_list_image .= '<div class="image-message">';
                 foreach($image_list as $value) {                    
-                    $xhtml_list_image .=    '<div class="image-message-img">
-                                                <img onclick="showImage(this)" src="'.base_url().'uploads/chat/'.$value.'" />
-                                            </div>';
+                    $path = ROOT_PATH . '/uploads/chat/' . $value;
+                    $name_file =  pathinfo($path);  
+                    if($name_file[extension] == 'jpg' || $name_file[extension] == 'png' || $name_file[extension] == 'JPG' || $name_file[extension] == 'PNG') {
+                        $xhtml_list_image .=   '<div class="image-message-img">
+                                                    <img onclick="showImage(this)" src="'.base_url().'uploads/chat/'.$value.'" />
+                                                </div>';
+                    }else if($name_file[extension] == 'txt' || $name_file[extension] == 'rar' || $name_file[extension] == 'doc') {
+                        $xhtml_list_image .=   '<div class="image-message-img">
+                                                    <a href="'.base_url().'uploads/chat/'.$value.'" download>'.$value.'</a>
+                                                </div>';
+                    }
                 }
                 $xhtml_list_image .= '</div>';
             }

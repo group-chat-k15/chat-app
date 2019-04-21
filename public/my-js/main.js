@@ -45,7 +45,9 @@ $('.add-friend').click(function() {
 						var ws = new WebSocket('ws://localhost:' + BROADCAST_PORT);
 						ws.onopen = () => conn.send(JSON.stringify(dataMsg));
 					}
-					window.location = base_url + 'chat/add_friend';
+					setTimeout(function(){		
+						window.location = base_url + 'chat/add_friend';
+					}, 300); 
 		    }
 		});
 	}	
@@ -177,8 +179,10 @@ function send_message(BROADCAST_URL, BROADCAST_PORT) {
 }
 
 var previewTemplate = '<div class="image-area-box">' +
-'<img data-dz-thumbnail src=""><i data-dz-remove class="fas fa-times"></i>'+
-'</div>';
+							'<i data-dz-size ></i>' +
+							'<img data-dz-thumbnail src=""><i data-dz-remove class="fas fa-times"></i>'+
+							'<i data-dz-errormessage></i>' +
+						'</div>';
 
 var myDropzone = new Dropzone(document.body, {
 	url:  base_url + 'chat/uploads',
@@ -186,9 +190,9 @@ var myDropzone = new Dropzone(document.body, {
 	autoProcessQueue: false,
 	uploadMultiple: true,
 	parallelUploads: 5,
-	maxFiles: 5,
+	maxFiles: 3,
 	maxFilesize: 1,
-	acceptedFiles: 'image/*, .txt',
+	acceptedFiles: '.png, .jpg, .txt, .pdf, .doc, .rar',
 	//addRemoveLinks: true,
 	thumbnailWidth: 80,
 	thumbnailHeight: 80,
@@ -200,6 +204,9 @@ var myDropzone = new Dropzone(document.body, {
 });
 
 myDropzone.autoDiscover = false;
+
+
+
 
 
 

@@ -97,7 +97,6 @@
 						<div class="input-group">
 							<div class="input-group-append">
 								<span class="input-group-text attach_btn">
-									<i class="fas fa-paperclip"></i>
 									<i class="fas fa-image ml-2 fileinput-button"></i>
 								</span>
 							</div>
