@@ -100,7 +100,7 @@
 									<i class="fas fa-image ml-2 fileinput-button"></i>
 								</span>
 							</div>
-							<textarea class="form-control type_msg"	placeholder="Nhập tin nhắn"></textarea>
+							<input class="form-control type_msg" type="text" placeholder="Nhập tin nhắn" onchange="send_message('<?= BROADCAST_URL ?>', '<?= BROADCAST_PORT ?>');">
 							<div class="input-group-append">
 								<span class="input-group-text send_btn" onclick="send_message('<?= BROADCAST_URL ?>', '<?= BROADCAST_PORT ?>');"><i
 									class="fas fa-location-arrow"></i></span>
