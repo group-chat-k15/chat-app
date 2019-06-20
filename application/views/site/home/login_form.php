@@ -18,10 +18,9 @@
                                 <div class="error"><?= form_error('password') ?></div>
                             </div>
                             <div class="form-group">
-                                <label for="remember-me" class="text-info"><span>Ghi nhớ</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="Đăng nhập">
                             </div>
-                            <div id="register-link" class="text-right">
+                            <div id="register-link" class="text-right mt-2">
                                 <a href="<?= base_url('home/user_registration_show') ?>" class="text-info">Đăng ký</a>
                             </div>
                         </form>

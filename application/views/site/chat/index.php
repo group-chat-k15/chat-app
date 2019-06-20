@@ -11,28 +11,35 @@
 					<a title="<?= $_SESSION['info']['name'] ?>" class="ml-2" href="<?= base_url('chat/add_friend') ?>"><?= $_SESSION['info']['name'] ?></a>
 				</div>
 				<div class="card-body contacts_body">
-					<ui class="contacts">
+					<ui class="contacts list-friend">
 						<?php 
 						      $xhtmlListFiend= '';
 						      $xhtmlBlockMessage = '';
 						      if(@$list_friend) { 
+									$this->load->model('user_online_m');
 						          foreach ($list_friend as $k => $row) {
-						              $link_img = base_url().'public/img/default-user-'.($row->sex ? $row->sex : 1).'.jpg';
-						              if(!empty($friend->image_link)){
-						                  //$link_img = base_url().'uploads/images/news/1024_512/'.$row->image_link;
-						              }
+										//get info time online
+										$where = array('users_id' => $row->id);
+										$info_user_online = $this->user_online_m->get_info_rule($where);
+										//sau 10 phút nếu không load lại trang thì sẽ k online
+										$class_online = ($info_user_online->time + 600) < time() ? 'offline' : '';
+										//image
+										$link_img = base_url().'public/img/default-user-'.($row->sex ? $row->sex : 1).'.jpg';
+										if(!empty($friend->image_link)){
+											$link_img = base_url().'uploads/user/'.$row->image_link;
+										}
 						              $xhtmlListFiend .= '<li> 
                                     						<div class="d-flex bd-highlight friend-box" '. ($k == 0 ? 'active="1"' : '') .' id-user="'.$row->id.'">
-						                                         <p class="notifi-'.$row->id.'">1</p>
+						                                         <p class="notifi-'.$row->id.'"></p>
                                     							<div class="img_cont">
                                     								<img
                                     									src="'.$link_img.'"
                                     									class="rounded-circle user_img"> <span
-                                    									class="online_icon offline"></span>
+                                    									class="online_icon '.$class_online.'"></span>
                                     							</div>
                                     							<div class="user_info">
                                     								<span>'.$row->name.'</span>
-                                    								<p>Khadija left 50 mins ago</p>
+                                    								
                                     							</div>
                                     						</div>
     					                               </li>';
@@ -46,7 +53,7 @@
                                                 						</div>
                                                 						<div class="user_info">
                                                 							<span>'.$row->name.'</span>
-                                                							<p>1767 Messages</p>
+                                                							
                                                 						</div>
                                                 					</div>
                                                 				</div>

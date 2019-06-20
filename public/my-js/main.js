@@ -1,3 +1,5 @@
+
+
 // serch friend
 $('.search_btn').click(function() {
 	$('#form-search').submit();
@@ -206,7 +208,23 @@ var myDropzone = new Dropzone(document.body, {
 myDropzone.autoDiscover = false;
 
 
-
+// $( document ).ready(function() {
+//     //get list friend sau 3S
+// 	setInterval(function(){
+// 		let idCrurent = $('body').attr('id') ?  $('body').attr('id') : 0;
+// 		if(parseInt(idCrurent) > 0) {
+// 			$.ajax({
+// 				url: base_url + 'chat/get_list_friend',
+// 				type: 'POST',
+// 				data: {user_id: idCrurent},
+// 				success: function (data) {
+// 					$('.list-friend').html(data);
+// 				}
+// 			});
+// 		}
+// 		console.log(1)
+// 	}, 3000);
+// });
 
 
 

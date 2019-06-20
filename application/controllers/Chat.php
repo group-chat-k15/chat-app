@@ -83,7 +83,7 @@ class Chat extends MY_Controller {
                             </div>';
             $block_content = '<div class="'.$class_2.'">
                                 '.$xhtml_list_image.'
-                                '.$content.' <span class="msg_time">8:40 AM, Today</span>
+                                '.$content.' <span class="msg_time">'.date('H:m:s d/m/Y', $created).'</span>
                             </div>';
             $str_restult = $id_curent == $from_id ? $block_content.$block_img : $block_img.$block_content;
             $xhtml_list_mesage .= '<div class="d-flex justify-content-'.$class_1.' mb-4">
@@ -331,8 +331,8 @@ class Chat extends MY_Controller {
             								class="rounded-circle user_img"> <span class="online_icon"></span>
             						</div>
             						<div class="user_info">
-            							<span>Chat with '.$obj_friend->name.'</span>
-            							<p>1767 Messages</p>
+            							<span>'.$obj_friend->name.'</span>
+            							
             						</div>
             					</div>
             				</div>
@@ -465,7 +465,56 @@ class Chat extends MY_Controller {
         unset($_SESSION['id']);
         unset($_SESSION['info']);
         redirect(base_url());
-    }  
+    } 
+    
+    public function get_list_friend() {
+        $this->load->model('user_online_m');
+        $xhtml = "";
+        if($_POST['user_id'] > 0) {
+            $user_id = $_POST['user_id'];
+            $input = array();
+            $input['where'] = array('user_id' => $user_id, 'status' => 1);
+            $obj_add_friend = $this->add_friend_m->get_list($input);
+            if ($obj_add_friend) {
+                $ids = $this->users_m->getId($obj_add_friend, 'friends_id');
+                $input = array();
+                $input['where_in'] = array('id', $ids);
+                $input['order'] = array('name', 'ASC');
+                $list_friend = $this->users_m->get_list($input);
+                foreach($list_friend as $k => $row) {
+                    //get info time online
+                    $where = array('users_id' => $row->id);
+                    $info_user_online = $this->user_online_m->get_info_rule($where);
+                    //sau 10 phút nếu không load lại trang thì sẽ k online
+                    $class_online = ($info_user_online->time + 600) < time() ? 'offline' : '';
+                    //image
+                    $link_img = base_url().'public/img/default-user-'.($row->sex ? $row->sex : 1).'.jpg';
+                    if(!empty($friend->image_link)){
+                        $link_img = base_url().'uploads/user/'.$row->image_link;
+                    }
+
+                    $xhtml .= '<li> 
+                                    <div class="d-flex bd-highlight friend-box" '. ($k == 0 ? 'active="1"' : '') .' id-user="'.$row->id.'">
+                                        <p class="notifi-'.$row->id.'">1</p>
+                                        <div class="img_cont">
+                                            <img
+                                                src="'.$link_img.'"
+                                                class="rounded-circle user_img"> <span
+                                                class="online_icon '.$class_online.'"></span>
+                                        </div>
+                                        <div class="user_info">
+                                            <span>'.$row->name.'</span>
+                                            <p>Khadija left 50 mins ago</p>
+                                        </div>
+                                    </div>
+                            </li>';
+                }
+            }else {
+                $xhtml = '<p style="color: #fff; margin-left: 10px;">Chưa có bạn bè</p>';
+            }
+        }
+        echo $xhtml;
+    }
     
     
     
