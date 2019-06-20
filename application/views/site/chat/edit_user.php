@@ -8,16 +8,18 @@
 				<div class="">
 					<div class="card card-friend mb-sm-3 mb-md-0 contacts_card" style="width: 600px;">
 						<div class="card-body contacts_body">
-							<form id="login-form" class="form" action="" method="post">
+							<form id="login-form" class="form" action="" method="post" enctype="multipart/form-data">
 								<div class="form-group" style="width: 60%; margin: auto;">
-									<label for="username" class="text-info"  style="color: #d8e4e6!important;">Họ tên</label><br>
-									<input style="background-color: #c7c7c7;" type="text" name="username" id="username" class="form-control" value="<?= set_value('username') ?>">
-									<div class="error"><?= form_error('username') ?></div>
+									<label for="name" class="text-info"  style="color: #d8e4e6!important;">Họ tên</label><br>
+									<input style="background-color: #c7c7c7;" type="text" name="name" id="name" class="form-control" value="<?= $info->name ? $info->name : set_value('name') ?>">
+									<div class="error"><?= form_error('name') ?></div>
 								</div>
 								<div class="form-group" style="width: 60%; margin: auto;">
-									<label for="username" class="text-info" style="color: #d8e4e6!important;">Ảnh đại diện</label><br>
-									<input style="background-color: #c7c7c7;" type="file" name="image_link" id="username" class="form-control" value="<?= set_value('username') ?>">
-									<div class="error"><?= form_error('username') ?></div>
+									<label for="image_link" class="text-info" style="color: #d8e4e6!important;">Ảnh đại diện</label><br>
+									<input style="background-color: #c7c7c7;" type="file" name="image_link" id="image_link" class="form-control">
+									<?php if($info->image_link) { ?>
+										<img src="<?= base_url('uploads/user/') . $info->image_link ?>" />
+									<?php } ?>
 								</div></br></br>
 								<div class="form-group" style="width: 60%; margin: auto;">
 									<input type="submit" name="submit" class="btn btn-info btn-md" value="Lưu thay đổi">

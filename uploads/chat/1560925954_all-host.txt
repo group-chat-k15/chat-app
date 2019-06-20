@@ -1,0 +1,161 @@
+outlook:
+user: kythuatweb@triviet.net
+pass: b9y-TOuPXk@X
+
+
+skype: voduy13 (thánh duy)
+Hao@0215
+
+
+
+https://cpanel.trivietit.net:2083
+U: triviet
+P: uyrygft4wfhuhg
+
+vietnamdelights.com
+https://112.78.4.14:2083
+User: vietnamdelights
+Pass: 456gdrymjsethsry
+
+db:
+us:   vietnamd_db
+pass: triviet22112008
+dbname: vietnamd_ghe
+
+
+Domain: atluxuryhouse.com
+https://112.78.4.14:2083
+| UserName: atluxuryhouse
+| PassWord: MdWVq%=V~0uG
+
+thoitrangkientuong.com
+https://112.78.3.184:8443/
+U: thoitrangkientuong.com
+P: *fi09Bb3
+
+nhathuocsontruong.com
+https://cpanel.trivietit.net:2083
+User: nhathuocsontruon
+Pass: vsr65tgawrh5aesavrxd6uwa43
+
+dogodungcuongthinh.com.vn
+https://cpanel.trivietit.net:2083
+U: dogodungcomvn
+P: gt664fjhery2222yywgfg
+
+thegioibds24h.com    
+https://cpanel.trivietit.net:2083  
+thegioibds24h
+WN;qnmV%47qf
+
+triviet.vn
+
+https://cpanel.trivietit.net:2083
+User: trivievn
+Pass: gyghjuwweyohr3367gg
+
+nhomkinhquangkiet.com
+https://cpanel.trivietit.net:2083
+User: nhomkinh
+Pass: uh6fyj4yygfrfyhgdaeht
+
+Control panel:
+https://103.28.36.224:2083
+ho?c hxxps://hoangcau.com.vn:2083
+
+Username	nhhoank2
+Password	]uOq)bX54|Y|7)
+
+| Domain: nhaphanphoidentrangtri.com
+https://112.78.4.14:2083
+| UserName: nhaphanphoidentr
+| PassWord: mx!nl}8Q&Tay
+
+maychasancongnghiep.com
+https://cpanel.trivietit.net:2083
+User: maychasa
+Pass: srgawregdstgf4fsfg
+
+
+ftp
+triviet@maychasancongnghiep.com
+Jn6VJb-=aAIT
+
+patlawhcm.com
+https://cpanel.hostinger.vn/hosting/index/aid/31591374#
+Pass: 01633377066 
+0989876519
+congtyluatphucanhthien@gmail.com 
+ftp:
+username: u104726488
+pass: NrhH9oY8167Y
+database:
+db_name: u104726488_db
+username: u104726488_db
+pass: u104726488
+
+
+cuathepphatdat.com cuathepp
+https://cpanel.trivietit.net:2083
+U: cuathepp
+P: uyggfh5edy3wdj9lhgh
+ftp:
+user: cuathepp_hao
+pass: =@OTL%w!d0S]
+
+db:
+us:   cuathepp_hao
+pass: =@OTL%w!d0S]
+dbname: cuathepp_db
+
+| Domain: acesport.net |
+Ip: https://112.78.4.14:2083 (n) | HasCgi: n  
+| UserName: acesport | 
+PassWord: 01032019vohaduy
+
+dogominhduc.com
+https://cpanel.trivietit.net:2083
+User: dogominhduc
+Pass: drfyjse5hr7naswrgdst
+
+danangxaydung.com
+https://112.78.4.14:2083
+User: danangxa
+Pass: d5gw5ge46he6ghe
+
+II – THÔNG TIN TÀI KHO?N: 
+Trang qu?n lý hosting: https://shost001.tenten.vn:2083 ho?c https://ledsaigon.com/cpanel 
+            + Tên dang nh?p:    bledsai76mo
+            + M?t kh?u:   T-Em5:tf{l
+Qu?n lý FTP: ftp.ledsaigon.com Ho?c 103.18.7.210 
+            + Tên dang nh?p:    bledsai76mo
+            + M?t kh?u:    T-Em5:tf{l
+Thông tin truy c?p Mail: https://https://shost001.tenten.vn:2096 ho?c https://ledsaigon.com:2096 
+            + Tên dang nh?p:    bledsai76mo
+            + M?t kh?u:    T-Em5:tf{l
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

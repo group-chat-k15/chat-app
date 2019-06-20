@@ -364,43 +364,45 @@ class Chat extends MY_Controller {
     
     // edit user
     public function edit_user() {
+        //lấy thông tin user 
+        $user_id = $_SESSION['id'];
+        $info = $this->users_m->get_info($user_id);
+        //truyền thông tin ra view
+        $this->data['info'] = $info;
+                
         if($this->input->post()) {
-            $this->form_validation->set_rules('username', '', 'trim|required|xss_clean', 
+            $this->form_validation->set_rules('name', '', 'required', 
                 array(
-                        'required'      => 'Tên đăng nhập không được trống',
-                )
-            );
-            $this->form_validation->set_rules('password', '', 'trim|required|xss_clean',
-                array(
-                        'required'      => 'Mật khẩu không được trống',
+                        'required'      => 'Họ tên không được trống',
                 )
             );
 
             if ($this->form_validation->run()) {
-                $data = array(
-                    'username' => $this->input->post('username'),
-                    'password' => $this->input->post('password')
-                    );
-                $result = $this->login_database->login($data);
-                if ($result) {
-                    $username = $this->input->post('username');
-                    $result = $this->login_database->read_user_information($username);
-                    if ($result) {
-                        $session_data = array(
-                            'username' => $result[0]->username,
-                            'email' => $result[0]->email,
-                            'name' => $result[0]->name,
-                            'image_link' => $result[0]->image_link
-                        );
-                        $_SESSION['id'] = $result[0]->id;
-                        $_SESSION['login'] = true;
-                        $_SESSION['info'] = $session_data;
-                        redirect(base_url());  
+                //upload image
+                    // path to derictery uploads
+                    $storeFolder = ROOT_PATH . '/uploads/user/';
+                    // upload files to $storeFolder
+                    $image = '';
+                    if ($_FILES['image_link']['name']) {
+                        $tempFile = $_FILES['image_link']['tmp_name'];
+                        $file_name = time() . '_' . $_FILES['image_link']['name'];
+                        $targetFile =  $storeFolder. $file_name;
+                        move_uploaded_file($tempFile,$targetFile);
+                        $image = $file_name;
+                    } else {
+                        $image = $info->image_link;
                     }
-                } else {
-                    $this->session->set_flashdata('message', 'Tên đăng nhập hoặc mật khẩu chưa đúng');
-                    redirect(base_url());                  
-                }
+                    
+                    $data = array(
+                        'name' => $this->input->post('name'),
+                        'image_link' => $image
+                    );
+                    if($this->users_m->update($user_id, $data)) {
+                        $this->session->set_flashdata('message', 'Cập nhật thông tin thành công');                        
+                    }else {
+                        $this->session->set_flashdata('message', 'cập nhật thông tin thất bại');    
+                    }
+                    redirect(base_url('chat/edit_user'));  
             }
         }
 
