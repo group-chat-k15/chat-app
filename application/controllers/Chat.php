@@ -12,6 +12,7 @@ class Chat extends MY_Controller {
 
     public function index() {
         $user_id = $_SESSION['id'];
+        $this->data['info_user'] = $this->users_m->get_info($user_id);
         $input = array();
         $input['where'] = array('user_id' => $user_id, 'status' => 1);
         $obj_add_friend = $this->add_friend_m->get_list($input);
@@ -37,6 +38,7 @@ class Chat extends MY_Controller {
                 }
             }
         }
+
         $this->data['xhtml_list_mesage'] = $xhtml_list_mesage;
         $this->data['list_friend'] = $list_friend;
         $this->data['title'] = 'Danh sách bạn bè';
@@ -328,7 +330,7 @@ class Chat extends MY_Controller {
             						<div class="img_cont">
             							<img
             								src="'.$link_img.'"
-            								class="rounded-circle user_img"> <span class="online_icon"></span>
+            								class="rounded-circle user_img">
             						</div>
             						<div class="user_info">
             							<span>'.$obj_friend->name.'</span>

@@ -8,7 +8,7 @@
 				<div class="card-header">
 					<a title="Thông báo" href="<?= base_url('chat/acept_friend') ?>"><i class="fas fa-bell noti-add-friend"></i></a>
 					<a title="Thêm bạn bè" class="ml-2" href="<?= base_url('chat/add_friend') ?>"><i class="fas fa-plus"></i></a>
-					<a title="<?= $_SESSION['info']['name'] ?>" class="ml-2" href="<?= base_url('chat/add_friend') ?>"><?= $_SESSION['info']['name'] ?></a>
+					<a title=" <?= $info_user->name ?>" class="ml-2" href="<?= base_url('chat/add_friend') ?>"><?= $info_user->name ?></a>
 				</div>
 				<div class="card-body contacts_body">
 					<ui class="contacts list-friend">
@@ -49,7 +49,7 @@
                                                 						<div class="img_cont">
                                                 							<img
                                                 								src="'.$link_img.'"
-                                                								class="rounded-circle user_img"> <span class="online_icon"></span>
+                                                								class="rounded-circle user_img">
                                                 						</div>
                                                 						<div class="user_info">
                                                 							<span>'.$row->name.'</span>
@@ -80,10 +80,6 @@
     				<li>
     					
     					<a href="<?= base_url('chat/edit_user') ?>"><i class="fas fa-user"></i>Quản lý thông tin</a>
-    				</li>
-    				<li>
-    					
-    					<a href="<?= base_url('chat/change_pass') ?>"><i class="fas fa-lock"></i>Đổi mật khẩu</a>
     				</li>
     				<li>
     					
